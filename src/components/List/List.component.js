@@ -1,14 +1,17 @@
 import React, { Fragment } from 'react';
 
-const List = ({ items }) => (
-  <Fragment>
+const List = ({ items, loading }) => {
+  if(loading) {
+    return <p>loading...</p>
+  }
+  return <Fragment>
   { items.map((data) =>
-     <div class="card" key={data}>
-        <header class="card-header">
-          <p class="card-header-title">{data.title}</p>
+     <div className="card" key={data}>
+        <header className="card-header">
+          <p className="card-header-title">{data.title}</p>
         </header>
       </div>)}
   </Fragment>
-);
+};
 
 export default List;

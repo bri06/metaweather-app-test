@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
   return {
-    items: state.list
+    items: state.list,
+    loading: state.loading
   }
 }
 
