@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
 import { getAverageTemp, formatTemp } from '../../utils';
-
+import Spinner from '../Spinner/Spinner.component';
 
 const List = ({ items, loading }) => {
 
   if(loading) {
-    return <p>loading...</p>
+    return <Spinner />
   }
 
   return <Fragment>
