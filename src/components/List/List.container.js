@@ -7,12 +7,11 @@ const mapStateToProps = (state) => {
   return {
     items: state.list,
     loading: state.loading,
-    tempList: state.tempList
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  tempList: (payload) => dispatch(setAscendentList(payload))
+  setAscendentList: (id, items) => dispatch(setAscendentList(id, items))
 });
 
 export default connect(

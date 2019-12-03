@@ -11,8 +11,7 @@ function list(state = initState, action) {
       return { ...state, loading: action.payload }
     case SORT_LIST:
       debugger;
-      console.log(action.payload);
-      console.log(sortNumbersDescendingOrder(action.payload));
+      const consolidateWeatherOrder = sortNumbersDescendingOrder(action.payload.items);
       return { ...state, tempList: [ ...sortNumbersDescendingOrder(action.payload) ] }
     default:
       return state
