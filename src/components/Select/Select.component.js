@@ -6,9 +6,9 @@ const Select = ({ handleClick }) => {
     <div className="field">
       <div className="control">
         <div className="select is-info">
-          <select onClick={handleClick}>
-            <option>Ascending</option>
-            <option>Descendent</option>
+          <select onChange={handleClick}>
+            <option value="1">Ascending</option>
+            <option value="2">Descendent</option>
           </select>
         </div>
       </div>

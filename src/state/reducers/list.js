@@ -1,7 +1,7 @@
 import { SET_LIST, SET_LOADING, SORT_LIST } from '../actions/actions';
 import { sortNumbersDescendingOrder } from '../../utils';
 
-const initState = { list: [], loading: false, tempList: [] };
+const initState = { list: [], loading: false };
 
 function list(state = initState, action) {
   switch (action.type) {
@@ -10,9 +10,16 @@ function list(state = initState, action) {
     case SET_LOADING:
       return { ...state, loading: action.payload }
     case SORT_LIST:
-      debugger;
-      const consolidateWeatherOrder = sortNumbersDescendingOrder(action.payload.items);
-      return { ...state, tempList: [ ...sortNumbersDescendingOrder(action.payload) ] }
+      const weatherItems = sortNumbersDescendingOrder(action.payload.items);
+      const id = action.payload.id;
+      return { ...state, list: state.list.map((data) => {
+        if (data.id === id) {
+          data.consolidated_weather = [ ...weatherItems ];
+          return data;
+        } else {
+          return data;
+        }
+      })}
     default:
       return state
   }

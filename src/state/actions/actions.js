@@ -14,10 +14,8 @@ export const getLocations = (query) => async (dispatch) => {
 
 export const SORT_LIST = 'SORT_LIST';
 export const setAscendentList = (id, items) => {
-  debugger;
   return ({ type: SORT_LIST, payload: {
     id,
     items
   } });
-  };
-// export const getDescendentList = (payload) => ({ type: });
+};

@@ -11,7 +11,6 @@ export const formatTemp = (value) => {
 export const sortNumbersAscendingOrder = (arr) => arr.sort((initial, final) => initial.the_temp - final.the_temp);
 
 export const sortNumbersDescendingOrder = (arr) => {
-  debugger;
   if (arr) {
     return arr.sort((initial, final) => final.the_temp - initial.the_temp)
   }

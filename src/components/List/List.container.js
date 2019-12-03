@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  setAscendentList: (id, items) => dispatch(setAscendentList(id, items))
+  setAscendentList: (id, items, selected) => dispatch(setAscendentList(id, items, selected))
 });
 
 export default connect(
