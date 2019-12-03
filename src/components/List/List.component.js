@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { getAverageTemp, formatTemp } from '../../utils';
+import { getAverageTemp, formatTemp, getDayOfWeek } from '../../utils';
 import Spinner from '../Spinner/Spinner.component';
 import Select from '../Select/Select.container';
 
@@ -37,7 +37,7 @@ const List = ({ items, loading, setOrdererList }) => {
                 </figure>
               </div>
               <span>{formatTemp(day.min_temp)}°C</span> to <span>{formatTemp(day.max_temp)}°C</span>
-              <p className="is-size-7">{day.applicable_date}</p>
+              <p className="is-size-7">{getDayOfWeek(day.applicable_date)}</p>
             </div>
           )) }
         </div>

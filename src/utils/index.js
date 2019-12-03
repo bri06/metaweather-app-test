@@ -15,3 +15,18 @@ export const sortNumbersDescendingOrder = (arr) => {
     return arr.sort((initial, final) => final.the_temp - initial.the_temp)
   }
 };
+
+export const getDayOfWeek = (date) => {
+  const day = new Date(date).getDay();
+  const weekdays = {
+    0: 'Sunday',
+    1: 'Monday',
+    2: 'Tuesday',
+    3: 'Wednesday',
+    4: 'Thursday',
+    5: 'Friday',
+    6: 'Saturday'
+  };
+
+  return weekdays[day];
+}
