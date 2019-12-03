@@ -1,5 +1,5 @@
-import { SET_LIST, SET_LOADING, SORT_LIST } from '../actions/actions';
-import { sortNumbersDescendingOrder } from '../../utils';
+import { SET_LIST, SET_LOADING, SORT_LIST, DESCENDING_VALUE } from '../actions/actions';
+import { sortNumbersDescendingOrder, sortNumbersAscendingOrder } from '../../utils';
 
 const initState = { list: [], loading: false };
 
@@ -10,11 +10,17 @@ function list(state = initState, action) {
     case SET_LOADING:
       return { ...state, loading: action.payload }
     case SORT_LIST:
-      const weatherItems = sortNumbersDescendingOrder(action.payload.items);
+      const descendingOrderItems = [ ...sortNumbersDescendingOrder(action.payload.items)];
+      const ascendinggOrderItems = [ ...sortNumbersAscendingOrder(action.payload.items)];
+      const orderSelected = action.payload.order;
       const id = action.payload.id;
       return { ...state, list: state.list.map((data) => {
-        if (data.id === id) {
-          data.consolidated_weather = [ ...weatherItems ];
+        if (data.woeid === id) {
+          if(orderSelected === DESCENDING_VALUE) {
+            data.consolidated_weather = descendingOrderItems;
+          } else {
+            data.consolidated_weather = ascendinggOrderItems;
+          }
           return data;
         } else {
           return data;

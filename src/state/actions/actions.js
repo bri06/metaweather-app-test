@@ -13,9 +13,11 @@ export const getLocations = (query) => async (dispatch) => {
 };
 
 export const SORT_LIST = 'SORT_LIST';
-export const setAscendentList = (id, items) => {
+export const DESCENDING_VALUE = '1';
+export const setOrdererList = (id, items, order) => {
   return ({ type: SORT_LIST, payload: {
     id,
-    items
+    items,
+    order
   } });
 };

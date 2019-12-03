@@ -3,14 +3,14 @@ import { getAverageTemp, formatTemp } from '../../utils';
 import Spinner from '../Spinner/Spinner.component';
 import Select from '../Select/Select.container';
 
-const List = ({ items, loading, setAscendentList }) => {
+const List = ({ items, loading, setOrdererList }) => {
 
   if(loading) {
     return <Spinner />
   }
 
-  const orderedList = (id, consolidated_weather) => {
-    setAscendentList(id, consolidated_weather);
+  const orderedList = (e, id, consolidated_weather) => {
+    setOrdererList(id, consolidated_weather, e.target.value);
   };
 
   return (
@@ -19,7 +19,7 @@ const List = ({ items, loading, setAscendentList }) => {
       <div className="card card-content" key={data.woeid}>
         <h1 className="card-header-title">{data.title}</h1>
         <div className="is-5">
-          <Select handleClick={() => orderedList(data.woeid, data.consolidated_weather)}/>
+          <Select handleClick={(e) => orderedList(e, data.woeid, data.consolidated_weather)}/>
         </div>
         <div className="columns is-centered">
           { data && data.consolidated_weather.map((day) => (

@@ -1,7 +1,6 @@
 import List from './List.component';
 import { connect } from 'react-redux';
-import { setAscendentList } from '../../state/actions/actions';
-
+import { setOrdererList } from '../../state/actions/actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -11,7 +10,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  setAscendentList: (id, items, selected) => dispatch(setAscendentList(id, items, selected))
+  setOrdererList: (id, items, selected) => dispatch(setOrdererList(id, items, selected))
 });
 
 export default connect(
