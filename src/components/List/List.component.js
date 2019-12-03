@@ -1,17 +1,27 @@
 import React, { Fragment } from 'react';
 import { getAverageTemp, formatTemp } from '../../utils';
 import Spinner from '../Spinner/Spinner.component';
+import Select from '../Select/Select.container';
+import {sortNumbersDescendingOrder} from '../../utils';
 
-const List = ({ items, loading }) => {
+const List = ({ items, loading, tempList }) => {
 
   if(loading) {
     return <Spinner />
   }
 
-  return <Fragment>
-  { items.map((data) =>
-     <div className="card card-content" key={data.woeid}>
-        <h1 className="card-header-title  column is-5">{data.title}</h1>
+  const orderedList = () => {
+    tempList(items.map(({ consolidated_weather }) => consolidated_weather));
+  };
+
+  return (
+  <Fragment>
+    { items.map((data) =>
+      <div className="card card-content" key={data.woeid}>
+        <h1 className="card-header-title">{data.title}</h1>
+        <div className="is-5">
+          <Select handleClick={orderedList}/>
+        </div>
         <div className="columns is-centered">
           { data && data.consolidated_weather.map((day) => (
             <div key={day.id} className="content">
@@ -28,9 +38,11 @@ const List = ({ items, loading }) => {
         </div>
         <div className="content">
         <p>Average temperature: <span>{formatTemp(getAverageTemp(data.consolidated_weather))}°C</span></p>
+          {sortNumbersDescendingOrder(data.consolidated_weather).map(({ the_temp }) => <ul><li>{the_temp}</li></ul>)}
         </div>
       </div>)}
-  </Fragment>
-};
+    </Fragment>
+  );
+}
 
 export default List;
