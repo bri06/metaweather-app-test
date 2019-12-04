@@ -1,5 +1,5 @@
 import { SET_LIST, SET_LOADING, SORT_LIST, FILTER_CLIMATE, GET_ALL_CLIMATE, DESCENDING_VALUE } from '../actions/actions';
-import { sortNumbersDescendingOrder, sortNumbersAscendingOrder } from '../../utils';
+import { sortNumbersDescendingOrder, sortNumbersAscendingOrder, filterTempById } from '../../utils';
 
 const initState = { list: [], loading: false };
 
@@ -30,7 +30,7 @@ function list(state = initState, action) {
       const { id: idTemp, woeidTemp } = action.payload;
         return { ...state, list: state.list.map((data) => {
           if(data.woeid === woeidTemp) {
-            const listFiltered = data.consolidated_weather.filter(({ the_temp }) => the_temp === idTemp);
+            const listFiltered = filterTempById(idTemp, data.consolidated_weather);
             data.consolidated_weather = listFiltered;
           }
           return data;
