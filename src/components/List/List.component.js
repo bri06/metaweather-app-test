@@ -4,29 +4,24 @@ import Spinner from '../Spinner/Spinner.component';
 import Select from '../Select/Select.container';
 import ButtonsContainer from '../ButtonsContainer/ButtonsContainer.container';
 
-const List = ({ items, loading, setOrdererList, filteredClimate }) => {
+const List = ({ items, loading, setOrdererList, filteredClimate, getAllClimate }) => {
 
   if(loading) {
     return <Spinner />
   }
 
-  const orderedList = (e, id, consolidated_weather) => {
-    setOrdererList(id, consolidated_weather, e.target.value);
-  };
+  const orderedList = (e, id, consolidatedWeather) => setOrdererList(id, consolidatedWeather, e.target.value);
 
-  const onClickBtn = (id, tempArray) => {
-    if(id && id.target && id.target.name) {
-      return filteredClimate(id.target.name, tempArray);
-    }
-    return filteredClimate(id, tempArray);
-  }
+  const onClickBtn = (id, woeid) => filteredClimate(id, woeid);
+
+  const onClickAllBtn = (woeid) => getAllClimate(woeid);
 
   return (
   <Fragment>
     { items.map((data) =>
       <div className="card card-content" key={data.woeid}>
         <h1 className="card-header-title">{data.title}</h1>
-        <ButtonsContainer onClickBtn={onClickBtn} tempArray={data}/>
+        <ButtonsContainer onClickBtn={onClickBtn} onClickAllBtn={onClickAllBtn} woeid={data.woeid} tempArray={data.consolidated_weather}/>
         <div className="content is-centered">
           <Select handleClick={(e) => orderedList(e, data.woeid, data.consolidated_weather)}/>
         </div>

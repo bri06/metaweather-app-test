@@ -5,7 +5,7 @@ export const fetchLocations = async (query) => {
   .then(fetchDataByWoeid)
 }
 
-const getDetail = async (id) => {
+export const getDetail = async (id) => {
   const res = await fetch(`https://www.metaweather.com/api/location/${id}/`);
   const item = await res.json();
   return item;
