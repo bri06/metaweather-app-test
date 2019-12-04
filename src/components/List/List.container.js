@@ -1,6 +1,6 @@
 import List from './List.component';
 import { connect } from 'react-redux';
-import { setOrdererList } from '../../state/actions/actions';
+import { setOrdererList, filteredClimate } from '../../state/actions/actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -10,7 +10,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  setOrdererList: (id, items, selected) => dispatch(setOrdererList(id, items, selected))
+  setOrdererList: (id, items, selected) => dispatch(setOrdererList(id, items, selected)),
+  filteredClimate: (id, tempArray) => dispatch(filteredClimate(id, tempArray))
 });
 
 export default connect(

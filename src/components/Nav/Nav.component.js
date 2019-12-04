@@ -1,8 +1,8 @@
 import React from 'react';
 
 const Nav = ({ title }) => (
-  <nav class="panel is-info">
-    <p class="panel-heading">{title}</p>
+  <nav className="panel is-info">
+    <p className="panel-heading">{title}</p>
   </nav>
 );
 

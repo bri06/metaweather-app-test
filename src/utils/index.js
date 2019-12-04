@@ -30,3 +30,5 @@ export const getDayOfWeek = (date) => {
 
   return weekdays[day];
 }
+
+export const filterTempById = (id, arr) => arr.filter((data) => data.the_temp === id);

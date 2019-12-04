@@ -21,3 +21,9 @@ export const setOrdererList = (id, items, order) => {
     order
   } });
 };
+
+export const FILTER_CLIMATE = 'FILTER_CLIMATE';
+export const filteredClimate = (id, tempArray) => ({ type: FILTER_CLIMATE, payload: {
+  id,
+  tempArray
+} });
