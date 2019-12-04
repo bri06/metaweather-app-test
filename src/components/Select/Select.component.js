@@ -4,7 +4,7 @@ const Select = ({ handleClick }) => {
 
   return (
     <div className="field">
-      <div className="control">
+      <div className="column">
         <div className="select is-info">
           <select onChange={handleClick}>
             <option value="1">Ascending</option>

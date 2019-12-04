@@ -9,7 +9,7 @@ function App() {
     <div className="App column is-three-fifths is-offset-one-fifth">
       <Nav title="Weather App"/>
       <Search />
-      <List />
+      <List/>
     </div>
   );
 }
