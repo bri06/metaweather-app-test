@@ -15,7 +15,6 @@ const List = ({ items, loading, setOrdererList, filteredClimate }) => {
   };
 
   const onClickBtn = (id, tempArray) => {
-    debugger;
     if(id && id.target && id.target.name) {
       return filteredClimate(id.target.name, tempArray);
     }

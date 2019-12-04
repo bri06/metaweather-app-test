@@ -27,15 +27,10 @@ function list(state = initState, action) {
         }
       })}
     case FILTER_CLIMATE:
-      debugger;
-        const { id: idTemp, tempArray } = action.payload;
-        if(idTemp === 'all') {
-          return { ...state, list: tempArray }
-        }
+        const { id: idTemp } = action.payload;
         return { ...state, list: state.list.map((data) => {
           const listFiltered = data.consolidated_weather.filter(({ the_temp }) => the_temp === idTemp);
           data.consolidated_weather = listFiltered;
-          debugger;
           return data;
         })}
     default:
