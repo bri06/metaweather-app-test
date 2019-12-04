@@ -1,4 +1,4 @@
-import { SET_LIST, SET_LOADING, SORT_LIST, FILTER_CLIMATE ,DESCENDING_VALUE } from '../actions/actions';
+import { SET_LIST, SET_LOADING, SORT_LIST, FILTER_CLIMATE, GET_ALL_CLIMATE, DESCENDING_VALUE } from '../actions/actions';
 import { sortNumbersDescendingOrder, sortNumbersAscendingOrder } from '../../utils';
 
 const initState = { list: [], loading: false };
@@ -27,12 +27,22 @@ function list(state = initState, action) {
         }
       })}
     case FILTER_CLIMATE:
-        const { id: idTemp } = action.payload;
+      const { id: idTemp, woeidTemp } = action.payload;
         return { ...state, list: state.list.map((data) => {
-          const listFiltered = data.consolidated_weather.filter(({ the_temp }) => the_temp === idTemp);
-          data.consolidated_weather = listFiltered;
+          if(data.woeid === woeidTemp) {
+            const listFiltered = data.consolidated_weather.filter(({ the_temp }) => the_temp === idTemp);
+            data.consolidated_weather = listFiltered;
+          }
           return data;
         })}
+    case GET_ALL_CLIMATE:
+      const { woeidTemp: woeid, tempArray } = action.payload;
+      return { ...state, list: state.list.map((data) => {
+        if (data.woeid === woeid) {
+          data.consolidated_weather = tempArray.consolidated_weather;
+        }
+        return data;
+      })}
     default:
       return state
   }

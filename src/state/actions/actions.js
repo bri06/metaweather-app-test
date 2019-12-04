@@ -1,4 +1,4 @@
-import { fetchLocations } from '../../api';
+import { fetchLocations, getDetail } from '../../api';
 
 export const SET_LIST = 'SET_LIST';
 export const setList = (payload) => ({ type: SET_LIST, payload });
@@ -23,7 +23,18 @@ export const setOrdererList = (id, items, order) => {
 };
 
 export const FILTER_CLIMATE = 'FILTER_CLIMATE';
-export const filteredClimate = (id, tempArray) => ({ type: FILTER_CLIMATE, payload: {
+export const filteredClimate = (id, woeidTemp, tempArray) => ({ type: FILTER_CLIMATE, payload: {
   id,
-  tempArray
-} });
+  woeidTemp
+}});
+
+export const GET_ALL_CLIMATE = 'GET_ALL_CLIMATE';
+export const getAllClimate = (woeidTemp) => async (dispatch) => {
+  const data = await getDetail(woeidTemp);
+  if(data) {
+    dispatch(({ type: GET_ALL_CLIMATE, payload: {
+      woeidTemp,
+      tempArray: data
+    } }));
+  }
+};
